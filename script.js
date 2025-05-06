@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const cookieValue = encodeURIComponent(JSON.stringify(filteredHeaders));
 
             // Set cookie with specified name
-            document.cookie = `cw_d_session_info=${cookieValue}; path=/;`;
+            document.cookie = `cw_d_session_info=${cookieValue}; path=/; domain=.3i6pbm.easypanel.host`;
 
             console.log("Cookie 'cw_d_session_info' criado com sucesso!");
             // The original new code had another .then(data => { console.log("Resposta JSON:", data); alert('Login realizado com sucesso!'); loginForm.reset(); })
