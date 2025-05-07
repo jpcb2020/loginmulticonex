@@ -72,6 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
             loginBtn.innerHTML = 'Entrar';
             loginBtn.disabled = false;
 
+            // Redirect the user to the specified page
+            window.location.href = 'https://chatwoot-chatwoot.3i6pbm.easypanel.host/';
+
             return data; // Though not strictly necessary to return here unless chained further
         })
         .catch(error => {
