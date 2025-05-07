@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Password toggle functionality
     const togglePassword = document.getElementById('toggle-password');
     const passwordInput = document.getElementById('password');
+    const usernameInput = document.getElementById('username'); // Get username input
+    const rememberMeCheckbox = document.getElementById('remember-me'); // Get remember me checkbox
 
     togglePassword.addEventListener('click', () => {
         const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -10,14 +12,25 @@ document.addEventListener('DOMContentLoaded', () => {
         togglePassword.classList.toggle('fa-eye-slash');
     });
 
+    // Load saved credentials from localStorage on page load
+    const savedUsername = localStorage.getItem('rememberedUsername');
+    const savedPassword = localStorage.getItem('rememberedPassword'); // Get saved password
+
+    if (savedUsername) {
+        usernameInput.value = savedUsername;
+        // Optionally check the remember me checkbox if credentials were found
+        if (savedPassword) { // Only check if both are found
+             rememberMeCheckbox.checked = true;
+             passwordInput.value = savedPassword; // Fill password if saved
+        }
+    }
+
     // Login form submission
     const loginForm = document.getElementById('login-form'); // Corrected ID from 'loginForm' to 'login-form' to match HTML
 
     loginForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        const usernameInput = document.getElementById('username'); // Renamed for clarity
-        const passwordInput = document.getElementById('password'); // Already defined above for toggle, but good to have it here for context
         const username = usernameInput.value;
         const password = passwordInput.value; // Re-getting value in case it was typed after page load
 
@@ -66,6 +79,17 @@ document.addEventListener('DOMContentLoaded', () => {
             // We will combine this into the current .then block for clarity and to ensure button state is managed correctly.
             console.log("Resposta JSON:", data);
             showNotification('Login realizado com sucesso!', 'success');
+
+            // Save credentials to localStorage if "Remember me" is checked
+            if (rememberMeCheckbox.checked) {
+                localStorage.setItem('rememberedUsername', username);
+                localStorage.setItem('rememberedPassword', password); // Save password
+            } else {
+                // Clear saved credentials if checkbox is not checked
+                localStorage.removeItem('rememberedUsername');
+                localStorage.removeItem('rememberedPassword');
+            }
+
             loginForm.reset(); // Clear the form
 
             // Reset button state

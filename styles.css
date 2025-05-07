@@ -79,6 +79,77 @@ body {
     color: #95a5a6;
 }
 
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Adjust spacing as needed */
+    user-select: none; /* Prevent text selection */
+}
+
+.remember-me input[type="checkbox"] {
+    /* Hide the default checkbox */
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.remember-me label {
+    position: relative;
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+    padding-left: 25px; /* Space for the custom checkbox */
+    display: inline-block;
+    line-height: 18px; /* Align text with checkbox */
+}
+
+.remember-me label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+/* Style the checkmark/indicator */
+.remember-me label::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 3px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+/* Show the custom checkbox when the actual checkbox is checked */
+.remember-me input[type="checkbox"]:checked + label::before {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+/* Show the checkmark when the actual checkbox is checked */
+.remember-me input[type="checkbox"]:checked + label::after {
+    opacity: 1;
+}
+
+/* Add a hover effect */
+.remember-me label:hover::before {
+    border-color: #3498db;
+}
+
 .input-group .toggle-password {
     left: auto;
     right: 15px;
@@ -99,6 +170,12 @@ body {
     border-color: #3498db;
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
     outline: none;
+}
+
+/* Hide default password reveal icon in Edge/IE */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
 }
 
 .login-btn {
