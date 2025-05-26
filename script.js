@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const date = new Date();
             date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000)); // Add 1 year in milliseconds
             const expires = "expires=" + date.toUTCString();
-            document.cookie = `cw_d_session_info=${cookieValue}; ${expires}; path=/; domain=.3i6pbm.easypanel.host`;
+            document.cookie = `cw_d_session_info=${cookieValue}; ${expires}; path=/; domain=.multiconsultor.com.br`;
 
             console.log("Cookie 'cw_d_session_info' criado com sucesso e validade de 1 ano!");
             // The original new code had another .then(data => { console.log("Resposta JSON:", data); alert('Login realizado com sucesso!'); loginForm.reset(); })
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             loginBtn.disabled = false;
 
             // Redirect the user to the specified page
-            window.location.href = 'https://chatwoot-chatwoot.3i6pbm.easypanel.host/';
+            window.location.href = 'https://multiconsultor.com.br/';
 
             return data; // Though not strictly necessary to return here unless chained further
         })
